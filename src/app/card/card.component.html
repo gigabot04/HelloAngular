@@ -1,0 +1,33 @@
+<div *ngIf="card" class="card">
+
+  <!-- Меняет color и fontWeight в зависимости от длины -->
+  <h2 [ngStyle]="{
+    color: card.title.length < 5 ? 'black' : 'green',
+    fontWeight: card.title.length < 10 ? 'normal' : 'bold'
+  }">{{ card.title }}</h2>
+
+  <!-- Добавляет класс -->
+  <p class="text"
+    [class.blue]="textColor === 'blue'"
+    [class.green]="textColor === 'green'"
+    [class.red]="textColor === 'red'"
+  >{{ card?.desc }}</p>
+
+  <!-- Меняет цвет текста -->
+  <div>
+    <button (click) = "textColor = 'blue'">Set blue</button>
+    <button (click) = "textColor = 'green'">Set green</button>
+    <button (click) = "textColor = 'red'">Set red</button>
+  </div>
+
+  <!-- Меняет заголовок -->
+  <div>
+    <button (click)="changeTitle()">Change title</button>
+    <button (click)="card.title = 'Inline Title'">Change title inline</button>
+  </div>
+
+<!-- можно изменить содержимое заголовка изменяя этот инпут -->
+  <div>
+    <input type="text"  [(ngModel)]="card.title">
+  </div>
+</div>
